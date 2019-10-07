@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     "<body>" + 
     "<h1>XSS test - GET</h1>" + 
     'Hello ' + name + '\n' + 
-    "<form method=post><input type=text name=p value=\""+name+"\"/><input type=submit value=Send></form>" + 
+    "<form method=post><input style=\"width: 600px; height: 30px;\" type=text name=p value=\"user input\"/><br/><input type=submit value=Send></form>" + 
     "</body>" + 
     "</html>"
     );
@@ -47,7 +47,7 @@ app.get('/patched', (req, res) => {
     "<body>" + 
     "<h1>XSS test - GET</h1>" + 
     'Hello ' + name + '\n' + 
-    "<form method=post><input type=text name=p value=\""+name+"\"/><input type=submit value=Send></form>" + 
+    "<form method=post><input style=\"width: 600px; height: 30px;\" type=text name=p value=\"user input\"/><br/><input type=submit value=Send></form>" + 
     "</body>" + 
     "</html>"
     );
