@@ -74,12 +74,12 @@ function get_request(name) {
     "</form>\n" + 
     "<hr/>\n" +
     '<h2 class="subtitle">Some examples (GET method):</h2>' +
-    "<a href='https://xss-lab5452.appspot.com/?name=World'>https://xss-lab5452.appspot.com/?name=World</a><br/>\n" +
-    "<a href='https://xss-lab5452.appspot.com/?name=<b>World</b>'>https://xss-lab5452.appspot.com/?name=&lt;b&gt;World&lt;/b&gt;</a>" +
+    "<a href='/?name=World'>/?name=World</a><br/>\n" +
+    "<a href='/?name=<u>World</u>'>/?name=&lt;u&gt;World&lt;/u&gt;</a>" +
     "<br/><br/>" + 
     '<h2 class="subtitle">Patched version (GET method):</h2>' +
-    "<a href='https://xss-lab5452.appspot.com/patched?name=World'>https://xss-lab5452.appspot.com/patched?name=World</a><br/>\n" +
-    "<a href='https://xss-lab5452.appspot.com/patched?name=<b>World</b>'>https://xss-lab5452.appspot.com/patched?name=&lt;b&gt;World&lt;/b&gt;</a>" +
+    "<a href='/patched?name=World'>/patched?name=World</a><br/>\n" +
+    "<a href='/patched?name=<u>World</u>'>/patched?name=&lt;u&gt;World&lt;/u&gt;</a>" +
     "</section></div>" +
    "</body>\n" + 
    "</html>";
