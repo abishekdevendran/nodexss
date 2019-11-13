@@ -62,7 +62,7 @@ function get_request(name) {
   '</head>\n' +
   "<body>\n" + 
   	"<div class='container'><section class='section'>\n" +
-    "<h1 class='title'XSS test - GET</h1>\n\n\n" + 
+    "<h1 class='title'>XSS test - GET</h1>\n\n\n" + 
     'Hello ' + name + '\n\n\n' + 
     "<form method=post>\n" + 
     '<div class="field">\n' +
