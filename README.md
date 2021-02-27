@@ -5,8 +5,8 @@ Simple and vulnerable NodeJS app prone to Cross-Site Scripting (XSS)
 
 ```
 git clone https://github.com/defensahacker/nodexss.git
-docker build -t spinfoo/nodexss:1.3 --no-cache .
-docker run --rm -p 8080:8080 -d spinfoo/nodexss:1.3
+docker build -t defensahacker/nodexss:1.3 --no-cache .
+docker run --rm -p 8080:8080 -d defensahacker/nodexss:1.3
 ```
 
 And run the webbrowser with:
