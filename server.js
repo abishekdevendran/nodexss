@@ -56,13 +56,13 @@ function get_request(name) {
   "<head>\n" +
     '<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
-    '<title>XSS labs</title>\n' +
+    '<title>XSS labs | Defensahacker Academy</title>\n' +
     '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">\n' +
     '<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>\n' +
   '</head>\n' +
   "<body>\n" + 
   	"<div class='container'><section class='section'>\n" +
-    "<h1 class='title'>XSS test - GET</h1>\n\n\n" + 
+    "<h1 class='title'>XSS test | Defensahacker Academy - GET</h1>\n\n\n" + 
     'Hello ' + name + '\n\n\n' + 
     "<form method=post>\n" + 
     '<div class="field">\n' +
@@ -91,13 +91,14 @@ function get_reply(name) {
   "<head>\n" +
     '<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
-    '<title>XSS labs</title>\n' +
+    '<title>XSS labs | Defensahacker Academy</title>\n' +
     '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">\n' +
     '<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>\n' +
   '</head>\n' +
   "<body>\n" + 
   	"<div class='container'><section class='section'>\n" +
-  	"<h1 class='title'>XSS test - POST</h1>\n" + 
+  	"<h1 class='title'>XSS labs | Defensahacker Academy</h1>\n" + 
+	"<h2>POST result:</h2>" +
   	"Text received:<br/>\n\n\n" + 
   	"<textarea class='textarea' rows=5 cols=50>"+name+"</textarea>\n\n\n" +
   	"</section></div>" +
