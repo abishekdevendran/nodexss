@@ -1,7 +1,7 @@
 {
   "name": "nodexss",
   "description": "Node.js XSS on Docker",
-  "author": "spinfoo",
+  "author": "defensahacker",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
