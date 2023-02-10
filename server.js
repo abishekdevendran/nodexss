@@ -26,7 +26,7 @@ app.post('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.body.p;
 	console.log('Received payload: ' + name);
-	// encrypt data using AES with key as payload and send it as cookie
+	// encrypt data using AES with key as payload
 	const encryptedData = crypt.AES.encrypt(
 		'5URGE{1TS_C0oOkIe_T!M3}',
 		name
@@ -35,9 +35,9 @@ app.post('/', (req, res) => {
 		prompt: name,
 		dataToSecure: encryptedData
 	};
-	res.cookie('secureCookie', JSON.stringify(dataToSecure), {
-		expires: new Date(Date.now() + 900000) // 15 minutes
-	});
+  // set dataToSecure as unique header
+  res.set('X-DataToSecure', JSON.stringify(dataToSecure));
+  res.set('X-DataPrompt', JSON.stringify(name));
 	res.send(get_request(name));
 });
 
