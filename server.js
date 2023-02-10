@@ -50,7 +50,7 @@ app.post('/', (req, res) => {
 	console.log('Received payload: ' + name);
   const data='5URGE{1TS_C0oOkIe_T!M3}';
   //encrypt data to openssl standard
-  const encrypted=encryptStringWithXORtoHex(data,name);
+  const encryptedDataHex=encryptStringWithXORtoHex(data,name);
 	res.set('X-DataToSecure', encryptedDataHex);
 	res.set('X-DataPrompt', name);
 	res.send(get_request(name));
