@@ -15,6 +15,28 @@ const crypt = require('crypto-js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+function encryptStringWithXORtoHex(input, key) {
+	var c = '';
+	while (key.length < input.length) {
+		key += key;
+	}
+	for (var i = 0; i < input.length; i++) {
+		var value1 = input[i].charCodeAt(0);
+		var value2 = key[i].charCodeAt(0);
+
+		var xorValue = value1 ^ value2;
+
+		var xorValueAsHexString = xorValue.toString('16');
+
+		if (xorValueAsHexString.length < 2) {
+			xorValueAsHexString = '0' + xorValueAsHexString;
+		}
+
+		c += xorValueAsHexString;
+	}
+	return c;
+}
+
 app.get('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.query.name;
@@ -26,14 +48,9 @@ app.post('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.body.p;
 	console.log('Received payload: ' + name);
-	// encrypt data using AES with key as payload
-	const encryptedData = crypt.AES.encrypt(
-		'5URGE{1TS_C0oOkIe_T!M3}',
-		name
-	);
-	// parse encrypted data to hex
-  const encryptedDataHex=crypt.enc.Hex.stringify(encryptedData.ciphertext);
-	// set dataToSecure as unique header
+  const data='5URGE{1TS_C0oOkIe_T!M3}';
+  //encrypt data to openssl standard
+  const encrypted=encryptStringWithXORtoHex(data,name);
 	res.set('X-DataToSecure', encryptedDataHex);
 	res.set('X-DataPrompt', name);
 	res.send(get_request(name));
