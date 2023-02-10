@@ -19,19 +19,6 @@ app.get('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.query.name;
 	console.log('Received payload: ' + name);
-	//encrypt data using SHA256 with key as payload and send it as cookie
-	const encryptedData = crypt
-		.HmacSHA256('5URGE{1TS_C0oOkIe_T!M3}', name)
-		.toString();
-	const dataToSecure = {
-    prompt: name,
-		dataToSecure: encryptedData
-	};
-	res.cookie('secureCookie', JSON.stringify(dataToSecure), {
-		secure: process.env.NODE_ENV !== 'development',
-		httpOnly: true,
-		expires: new Date(Date.now() + 900000) // 15 minutes
-	});
 	res.send(get_request(name));
 });
 
@@ -39,6 +26,19 @@ app.post('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.body.p;
 	console.log('Received payload: ' + name);
+	//encrypt data using SHA256 with key as payload and send it as cookie
+	const encryptedData = crypt
+		.HmacSHA256('5URGE{1TS_C0oOkIe_T!M3}', name)
+		.toString();
+	const dataToSecure = {
+		prompt: name,
+		dataToSecure: encryptedData
+	};
+	res.cookie('secureCookie', JSON.stringify(dataToSecure), {
+		secure: process.env.NODE_ENV !== 'development',
+		httpOnly: true,
+		expires: new Date(Date.now() + 900000) // 15 minutes
+	});
 	res.send(get_request(name));
 });
 
