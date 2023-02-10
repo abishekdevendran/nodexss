@@ -35,9 +35,9 @@ app.post('/', (req, res) => {
 		prompt: name,
 		dataToSecure: encryptedData
 	};
-  // set dataToSecure as unique header
-  res.set('X-DataToSecure', JSON.stringify(dataToSecure));
-  res.set('X-DataPrompt', JSON.stringify(name));
+	// set dataToSecure as unique header
+	res.set('X-DataToSecure', JSON.stringify(encryptedData));
+	res.set('X-DataPrompt', JSON.stringify(name));
 	res.send(get_request(name));
 });
 
