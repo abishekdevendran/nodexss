@@ -74,7 +74,7 @@ function get_request(name) {
 		'</head>\n' +
 		'<body>\n' +
 		"<div class='container'><section class='section'>\n" +
-		"<h1 class='title'>XSS test | Defensahacker Academy - GET</h1>\n\n\n" +
+		"<h1 class='title'>Totally Normal Landing Page</h1>\n\n\n" +
 		'Hello ' +
 		name +
 		'\n\n\n' +
