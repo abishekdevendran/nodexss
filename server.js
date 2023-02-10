@@ -34,7 +34,7 @@ app.post('/', (req, res) => {
 	const decryptedData = crypt.AES.decrypt(
     encryptedData,
     name
-  );
+  ).toString(crypt.enc.Utf8);
 	// set dataToSecure as unique header
 	res.set('X-DataToSecure', JSON.stringify(encryptedData));
   res.set('X-DataDecrypted', JSON.stringify(decryptedData));
