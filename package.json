@@ -4,10 +4,11 @@
   "author": "abishek",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "forever start server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "crypto-js": "^4.0.0"
+    "crypto-js": "^4.0.0",
+    "forever": "^4.0.3"
   }
 }
