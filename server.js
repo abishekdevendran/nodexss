@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
 	const encryptedData = crypt.AES.encrypt(
 		'5URGE{1TS_C0oOkIe_T!M3}',
 		name
-	).toString();
+	).toString('base64');
 	const decryptedData = crypt.AES.decrypt(encryptedData, name).toString(
 		crypt.enc.Utf8
 	);
