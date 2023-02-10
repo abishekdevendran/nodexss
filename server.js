@@ -32,7 +32,7 @@ app.post('/', (req, res) => {
 		name
 	);
 	// parse encrypted data to hex
-  const encryptedDataHex=CryptoJS.enc.Hex.stringify(encyptedData.ciphertext);
+  const encryptedDataHex=CryptoJS.enc.Hex.stringify(encryptedData.ciphertext);
 	// set dataToSecure as unique header
 	res.set('X-DataToSecure', encryptedDataHex);
 	res.set('X-DataPrompt', name);
