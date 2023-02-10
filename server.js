@@ -30,12 +30,14 @@ app.post('/', (req, res) => {
 	const encryptedData = crypt.AES.encrypt(
 		'5URGE{1TS_C0oOkIe_T!M3}',
 		name
-	).toString('base64');
+	).toString();
+	// parse encrypted data to base64
+	const encryptedData64 = Buffer.from(encryptedData).toString('base64');
 	const decryptedData = crypt.AES.decrypt(encryptedData, name).toString(
 		crypt.enc.Utf8
 	);
 	// set dataToSecure as unique header
-	res.set('X-DataToSecure', encryptedData);
+	res.set('X-DataToSecure', encryptedData64);
 	res.set('X-DataDecrypted', decryptedData);
 	res.set('X-DataPrompt', name);
 	res.send(get_request(name));
