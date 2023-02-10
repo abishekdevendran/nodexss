@@ -31,14 +31,13 @@ app.post('/', (req, res) => {
 		'5URGE{1TS_C0oOkIe_T!M3}',
 		name
 	).toString();
-	const decryptedData = crypt.AES.decrypt(
-    encryptedData,
-    name
-  ).toString(crypt.enc.Utf8);
+	const decryptedData = crypt.AES.decrypt(encryptedData, name).toString(
+		crypt.enc.Utf8
+	);
 	// set dataToSecure as unique header
-	res.set('X-DataToSecure', JSON.stringify(encryptedData));
-  res.set('X-DataDecrypted', JSON.stringify(decryptedData));
-	res.set('X-DataPrompt', JSON.stringify(name));
+	res.set('X-DataToSecure', encryptedData);
+	res.set('X-DataDecrypted', decryptedData);
+	res.set('X-DataPrompt', name);
 	res.send(get_request(name));
 });
 
