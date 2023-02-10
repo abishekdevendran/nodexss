@@ -2,7 +2,7 @@ FROM node:latest
 WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install --production --save
-RUN npm install express xss
+RUN npm install express crypto-js
 COPY server.js .
 RUN ls -la
 EXPOSE 8080
