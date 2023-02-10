@@ -6,4 +6,4 @@ RUN npm install express crypto-js forever
 COPY server.js .
 RUN ls -la
 EXPOSE 8080
-CMD [ "npm", "start" ]
+CMD [ "node", "server.js" ]
