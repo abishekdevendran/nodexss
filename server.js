@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 	res.cookie('secureCookie', JSON.stringify(dataToSecure), {
 		secure: process.env.NODE_ENV !== 'development',
 		httpOnly: true,
-		expires: dayjs().add(30, 'days').toDate()
+		expires: new Date(Date.now() + 900000), // 15 minutes
 	});
   res.send(get_request(name));
 });
