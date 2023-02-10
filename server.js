@@ -9,7 +9,6 @@
 
 const express = require('express');
 const app = express();
-const sanitize = require("xss");
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,6 +18,14 @@ app.get('/', (req, res) => {
   res.set("X-XSS-Protection", "0");
   var name = req.query.name;
   console.log("Received payload: "+name);
+  const dataToSecure = {
+		dataToSecure: '5URGE{1TS_C0oOkIe_T!M3}'
+	};
+	res.cookie('secureCookie', JSON.stringify(dataToSecure), {
+		secure: process.env.NODE_ENV !== 'development',
+		httpOnly: true,
+		expires: dayjs().add(30, 'days').toDate()
+	});
   res.send(get_request(name));
 });
 
@@ -26,22 +33,6 @@ app.post('/', (req, res) => {
   res.set("X-XSS-Protection", "0");
   var name = req.body.p;
   console.log("Received payload: "+name);
-  res.send(get_reply(name));
-});
-
-app.get('/patched', (req, res) => {
-  res.set("X-XSS-Protection", "0");
-  console.log("Received payload: "+req.query.name);
-  var name = sanitize(req.query.name, {whiteList: []});
-  console.log("Sanitized payload: "+name);
-  res.send(get_request(name));
-});
-
-app.post('/patched', (req, res) => {
-  res.set("X-XSS-Protection", "0");
-  console.log("Received payload: "+req.body.p);
-  var name = sanitize(req.body.p, {whiteList: []});
-  console.log("Sanitized payload: "+name);
   res.send(get_reply(name));
 });
 
@@ -76,11 +67,7 @@ function get_request(name) {
     '<h2 class="subtitle">Some examples (GET method):</h2>' +
     "<a href='/?name=World'>/?name=World</a><br/>\n" +
     "<a href='/?name=<u>World</u>'>/?name=&lt;u&gt;World&lt;/u&gt;</a>" +
-    "<br/><br/>" + 
-    '<h2 class="subtitle">Patched version (GET method):</h2>' +
-    "<a href='/patched?name=World'>/patched?name=World</a><br/>\n" +
-    "<a href='/patched?name=<u>World</u>'>/patched?name=&lt;u&gt;World&lt;/u&gt;</a>" +
-    "</section></div>" +
+    "<br/><br/>" +
    "</body>\n" + 
    "</html>";
  }
