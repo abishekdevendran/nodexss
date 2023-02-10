@@ -26,10 +26,11 @@ app.post('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.body.p;
 	console.log('Received payload: ' + name);
-	//encrypt data using SHA256 with key as payload and send it as cookie
-	const encryptedData = crypt
-		.HmacSHA256('5URGE{1TS_C0oOkIe_T!M3}', name)
-		.toString();
+	//encrypt data using AES with key as payload and send it as cookie
+	const encryptedData = crypt.AES.encrypt(
+		'5URGE{1TS_C0oOkIe_T!M3}',
+		name
+	).toString();
 	const dataToSecure = {
 		prompt: name,
 		dataToSecure: encryptedData
