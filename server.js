@@ -10,7 +10,11 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
+app.use(helmet());
+app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -40,7 +44,12 @@ app.get('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.query.name;
 	console.log('Received payload: ' + name);
-	res.send(get_request(name));
+	if(name.length>0){
+		res.send(get_request(name));
+	}
+	else{
+		res.send(get_request("User"));
+	}
 });
 
 app.post('/', (req, res) => {
@@ -75,7 +84,7 @@ function get_request(name) {
 		"<div class='container'><section class='section'>\n" +
 		"<h1 class='title'>Totally Normal Landing Page</h1>\n\n\n" +
 		'Hello ' +
-		name +
+		`${name?name:"User"}` +
 		'\n\n\n' +
 		'<form method=post>\n' +
 		'<div class="field">\n' +
