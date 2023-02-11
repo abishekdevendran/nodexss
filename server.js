@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
-app.use(helmet({ contentSecurityPolicy: { directives: cspDefaults } }));
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
