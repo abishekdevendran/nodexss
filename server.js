@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 	res.set('X-XSS-Protection', '0');
 	var name = req.query.name;
 	console.log('Received payload: ' + name);
-	if(name.length>0){
+	if(name?.length>0){
 		res.send(get_request(name));
 	}
 	else{
